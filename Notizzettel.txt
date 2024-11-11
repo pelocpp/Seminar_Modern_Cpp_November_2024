@@ -1,0 +1,140 @@
+Modern C++
+
+Guten Morgen 
+
+Peter Loos
+
+P@ssw0rd
+
+========================
+
+ca 12.30 
+
+9.00 bis 17.00
+
+Coffee-Breaks
+
+========================
+
+https://github.com/pelocpp
+
+Unter-RePo:  Modern Cpp  // cpp_modern <===
+
+========================
+
+Inhalt / Agenda
+
+== Welchen Sprachen kenne ich 
+== Was sind meine Erwartungen
+== Was MUSS drin sein :)
+== Muss nächste Woche Deep C++ programmieren
+== Will C++ Quellcode nur lesen / verstehen können
+== Rule of Three / Five / Zero
+
+
+Neue Features
+Deep Inside
+Ab Funktionale Progr.
+Templates
+Tipps & Tricks
+Exception Safety
+
+========================
+
+Referenz:   Alias für ein Objekt (Name !!!)
+
+Es wird eine Adresse übergeben
+
+Call by Value:   KOPIE
+
+C# / Java:    Referenz-basiert   
+              (C# und struct: Value-basiert)
+
+C++:          Referenz-basiert (Adressen)  
+              Value-basiert (Kopien)  
+
+C++:  Why  ==> Performanz !!!
+
+C++ 11: 
+
+C - Definition:
+
+x = y;   // 
+         // x: Adresse      // Left Value
+         // y: Wert (Value) // Right-Value
+
+LValue // Left Value
+RValue // Right Value
+
+LValue - Referenzen
+
+RValue - Referenzen.   Why ????????????????
+
+Move-Semantik:
+
+Vergleich:
+
+... 300:   // Temp. Objekt am Stack // Wird freigegeben
+... 370:   // Objekt im Vektor
+
+Noch ein Vergleich - ab C++ 11:
+
+
+... 520:  
+
+
+============================================
+
+Flache Kopie:   Kann / wird automatisch von C++ unterstützt.
+
+Tiefe Kopie:    Muss dann - vom Entwickler - realisiert werden,
+                wenn in der Klasse Zeiger (Heap) vorhanden sind.
+
+... 2F0:
+
+=============================================
+
+C++:
+
+== Objekt-Orientiert   (Bjarne Stroustrup)
+
+== Generische Programmierung (templates ... auto)
+
+   Alexander Stepanov
+
+   STL
+
+=============================================
+
+Lambdas:
+
+== Historische Herleitung
+
+   i)  C-Funktion bei STL_Algorithmen
+   ii) Aufrufbares Objekt
+
+== Was ist ein Lambda?
+
+
+Lambda-Funktion:
+
+C++:  Lambda-Objekt
+
+Wie funktiniert ein  Lambda-Objekt  ???
+
+a) Wir haben eine anonyme, lokale Klasse IN DERSELBEN Methode.
+
+b) Diese überläft den operator()
+
+c) Dieser wird gerufen.
+
+Tool:  Cpp Insights
+
+=============================================
+
+"Exception Safety"
+
+=============================================
+
+
+
