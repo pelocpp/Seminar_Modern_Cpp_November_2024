@@ -2,6 +2,10 @@
 // BraceInitialization.cpp // Uniform Initialization / Brace Initialization
 // =====================================================================================
 
+module;
+
+#include <cstdint>  
+
 module modern_cpp:brace_initialization;
 
 namespace BraceInitialization {
@@ -11,10 +15,16 @@ namespace BraceInitialization {
     static void test_00()
     {
         double dval{ 123.456 };
-        int ival{ 123 };
+        //int ival{ 123 
+        int32_t ival{ 123 };
+
+        size_t x = sizeof(size_t);
+
+        double d3 = 123;
 
         double d1 = ival;      // Compiles
-        // double d2{ ival };  // Error: "conversion from 'int' to 'double' requires a narrowing conversion"
+        
+        double d2{ (double)ival };  // Error: "conversion from 'int' to 'double' requires a narrowing conversion"
     }
 
     // =================================================================================
@@ -22,7 +32,9 @@ namespace BraceInitialization {
 
     static void test_01()
     {
-        int n{};              // n equals 0
+        int x = 0;
+
+        int n{ };              // n equals 0
         float f{};            // f equals 0.0
         double d{};           // d equals 0.0
         unsigned long l{};    // l equals 0
@@ -40,7 +52,10 @@ namespace BraceInitialization {
 
     static void test_02()
     {
+        int x = 1;
+
         int n{ 1 };          // n equals 1
+
         float f{ 1.5f };     // f equals 1.5
         double d{ 2.5 };     // d equals 2.5
 
@@ -60,8 +75,8 @@ namespace BraceInitialization {
 
     static void test_03()
     {
-        [[ maybe_unused]] struct Struct obj0;         // uninitialized !!!
-        struct Struct obj1 {};                        // obj1.m_i => 0, obj1.m_j => 0
+        struct Struct obj0;                             // uninitialized !!!
+        struct Struct obj1 {};                          // obj1.m_i => 0, obj1.m_j => 0
         struct Struct obj2 { 1, 2 };                  // obj2.m_i => 1, obj2.m_j => 2
         struct Struct obj3 { 3 };                     // obj3.m_i => 3, obj3.m_j => 0
         // gcc: warning: missing initializer for member 'Struct::m_j'
@@ -169,6 +184,7 @@ namespace BraceInitialization {
     static void test_08()
     {
         int* pi = new int[5] { 1, 2, 3, 4, 5 };
+
         double* pd = new double[5] { 1.0, 2.0, 3.0, 4.0, 5.0 };
 
         for (int i = 0; i < 5; i++) {
@@ -190,9 +206,26 @@ namespace BraceInitialization {
 
     static void test_09()
     {
-        int intArray[] { 1, 2, 3, 4, 5 };
+        int intArray1[] { 1, 2, 3, 4, 5 };
 
-        for (int n : intArray) {
+        int intArray2[5]{ 1, 2, 3, 4, 5 };
+
+        int intArray3[5]{ 1, 2, 3 };
+
+        int intArray4[100]{ 1 };
+
+        int intArray5[100]{ 0 };
+
+        int intArray6[100]{  };
+
+        // versus
+
+        for (int i = 0; i < 100; ++i) {
+            intArray6[i] = 0;
+        }
+
+
+        for (int n : intArray1) {
             std::cout << n << ", ";
         }
         std::cout << std::endl;

@@ -6,6 +6,8 @@ module modern_cpp:sso;
 
 void main_sso()
 {
+   // std::string s{ "ABC" };
+
     auto size{ sizeof(std::string) };
     auto capacity{ std::string{}.capacity() };
     auto small { std::string(capacity, '*') };

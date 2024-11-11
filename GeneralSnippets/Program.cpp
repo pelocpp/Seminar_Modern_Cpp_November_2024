@@ -54,7 +54,7 @@ int main()
         //main_functional_programming_ranges();
         //main_functional_programming();
         //main_functional_programming_alternate();
-        //main_initializer_list();
+        main_initializer_list();
         //main_input_output_streams();  
         //main_invoke();
         //main_lambdas();
@@ -66,7 +66,7 @@ int main()
         //main_metaprogramming_02(); 
         //main_modularized_standard_library(); 
         //main_modules();
-        main_move_semantics();
+       // main_move_semantics();
         //main_optional();
         //main_perfect_forwarding();
         //main_placement_new();
@@ -81,7 +81,7 @@ int main()
         //main_sfinae();
         //main_shared_ptr();
         //main_source_location();
-        //main_sso();
+       // main_sso();
         //main_static_assert();
         //main_string_view();
         //main_structured_binding();
@@ -108,7 +108,7 @@ int main()
         //main_virtual_override_final();
         //main_weak_pointer();
 
-       // main_exercises();
+      // main_exercises();
     }
     catch (const std::exception& ex) {
         std::cout << "Exception: " << ex.what() << std::endl;

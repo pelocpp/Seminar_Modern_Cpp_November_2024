@@ -7,14 +7,14 @@ module modern_cpp:initializer_list;
 namespace InitializerList {
 
     // function using std::initializer_list
-    static int adder (std::initializer_list<int> list)
+    static int adder (std::vector<int> list)
     {
         int result{};
 
         std::for_each(
             list.begin(),
             list.end(),
-            [&result](int value) {
+            [&](int value) {
                 result += value; 
             }
         );
@@ -34,7 +34,8 @@ namespace InitializerList {
     static void test_01() {
 
         // testing functions expecting lists in function call
-        int sum = adder({ 1, 2, 3, 4, 5 });
+        int sum = adder ( { 1, 2, 3, 4, 5, 6, 7, 8 } );
+
         std::cout << sum << std::endl;
 
         print({ 1, 2, 3, 4, 5 });
@@ -79,16 +80,16 @@ namespace InitializerList {
     static void test_03() {
 
         Polygon polygon
-        {                          // c'tor Polygon - using brace initialization syntax
-            {                      // braces for std::initializer_list<Point> object
-                { 45.0, 45.0 },    // c'tor Point - using brace initialization syntax
-                { 60.0, 60.0 },    // c'tor Point - using brace initialization syntax
+        {                                      // c'tor Polygon - using brace initialization syntax
+            {                                  // braces for std::initializer_list<Point> object
+                { 45.0, 45.0 },                // c'tor Point - using brace initialization syntax
+                { 60.0, 60.0 },                // c'tor Point - using brace initialization syntax
                 { 120.0, 120.0 },
                 { 180.0, 180.0 }
             }
         };
 
-        // same example - with brace elision
+        // same example - with brace elision // C++ 17
         Polygon polygon2
         {                          // c'tor Polygon - using brace initialization syntax
             { 45.0, 45.0 },        // c'tor Point - using brace initialization syntax
