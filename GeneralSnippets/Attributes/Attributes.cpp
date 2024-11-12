@@ -4,7 +4,7 @@
 
 module modern_cpp:attributes;
 
-#define DEMONSTRATE_WARNINGS_AND_ERRORS   1
+// #define DEMONSTRATE_WARNINGS_AND_ERRORS   1
 
 namespace StandardAttributes {
 
@@ -17,7 +17,7 @@ namespace StandardAttributes {
 
     static void test_01()
     {
-        discard_test();
+        //discard_test();
 
         // printf("%d", 123);
 

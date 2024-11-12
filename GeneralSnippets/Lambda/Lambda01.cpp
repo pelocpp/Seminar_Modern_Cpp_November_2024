@@ -305,6 +305,8 @@ namespace Lambdas {
         // This kind of expression might be useful when you have
         // a complex initialization of a const  object:
 
+        // Makros ... unanständig
+
         auto constexpr ConstValue = [] () {
             /* several lines of code ... - "very complex" computation */
             return 123;
@@ -312,6 +314,17 @@ namespace Lambdas {
 
         std::cout << "Const Value: " << ConstValue << std::endl;
     }
+}
+
+void test_nochmal_lambdas()
+{
+    []() {};
+    [] {};
+
+    constexpr auto wasBinIch = []() -> int { return 123; }();
+
+    constexpr auto tueWas = [](auto x, auto y) { return x + y; } (11, 12) ;
+
 }
 
 void main_lambdas()
@@ -324,7 +337,7 @@ void main_lambdas()
     //test_04();
     //test_05();
     //test_06();
-    test_07();
+    //test_07();
     //test_08();
     //test_09();
     //test_10();

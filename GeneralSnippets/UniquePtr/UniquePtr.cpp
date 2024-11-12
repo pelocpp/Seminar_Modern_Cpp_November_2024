@@ -54,7 +54,7 @@ namespace UniquePointerGeneral {
         std::unique_ptr<int> ptr1{ new int{ 123 } };
         // get: NIE delete 
         // or
-        std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
+        // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
         // auto ptr1{ std::make_unique<int>(123) };
 

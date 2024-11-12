@@ -336,3 +336,166 @@ Rule-of-Zero:  Smart-Pointer.
 {
    // 10%
 }
+
+===================================================
+
+constexpr
+
+SW:   Globales Datensegment
+
+Tabellen // Strukturen
+
+Deren Information eigentlich schon vorher bekannt ist.
+
+ROM 
+
+===================================================
+
+Literal / Konstante
+
+100
+
+123.345f
+
+123ul
+
+123_km
+
+123_kilogramm
+
+123_kg
+
+123_pound
+
+123.534_pound;
+
+0xFF0000_farbe;
+
+0xFF0000_color;   // Objekte
+
+"13:16:00"_uhrzeit;  // Zeichenkette parsen // RegExpr
+
+"13:16:00"_uhrzeit;  // Zeichenkette parsen // RegExpr
+
+Grammatik  // Syntax // Lexikon
+
+C++  ===> Lexikon erweitern.
+
+Wie ???????????????????????????????
+
+operator ""   Literaloperator
+
+UDL   User Defined Literal
+
+type operator ""  _suffix  (int parameter)
+
+int operator ""  _km  (int parameter)
+
+---------------------------------------
+
+operator ()  // invoke
+
+Methoden tun's auch: 
+
+Richtig - ich muss den Namen der Methode reservieren / festlegen
+
+Iterator:
+
+next()   ++
+Current  *
+equals   ==, !=
+
+---------------------------------------
+
+Beispiel:
+
+0xFF0000_rgb;   // class Color  // red
+
+123_km
+
+123_m
+
+123_km + 123_m 
+
+123123_rgb ;
+
+"0xFF0000"_rgb;  
+
+
+===============================================
+
+30 Minuten Übung :)
+
+Smart Pointer
+
+std::weak_ptr 
+
+#include <memory>
+
+===============================================
+
+11: std::shared_ptr<X> pA{ new X{} };    // passt
+12: std::shared_ptr<X> pB;
+13: std::shared_ptr<X> pC;
+14: 
+15: pB = pA;                               // passt  - pA, pb: 2
+16: pC = std::shared_ptr<X>(pB.get());     // Foul: pC: Hat Raw Pointer von pa, pb
+17: pC = nullptr;                          // reset // gibt Raw Pointer frei !!!
+18: int value = (*pB).getValue();                   // Falscher Wert
+19: std::cout << "Value: " << value << std::endl;   
+                                          // Destruktor: pa, pb
+
+
+========================================================
+
+std::optional
+
+Problem:
+
+int n = 123;
+
+// ist das ein gültiger Wert 
+
+n = 0;
+
+if (n == 0)  
+
+if (n == -1)
+
+if (n == -2234234234)  
+
+int n = 123;   // gültiger Wert
+bool isValid = true / false;
+
+// Pointer:
+
+int* pn = NULL;  // malloc / new
+
+C++ Datentyp: ein int und ein bool vereint :)
+
+std::optional <int> 
+
+
+C#:
+
+int? n;
+
+=============================================================
+
+std::variant
+
+Kann Daten unterschiedlichen Typs aufnehmen ....
+zu einem Zeitpunkt aber nur eine Art von Wert.
+
+Die unterschiedlichen Typen müssen VORHER bekannt sein.
+
+std::any 
+
+Excel // Sheets   =========> Zelle 
+
+Zelle // Cell:  Zeichenkette, Wert, Datum, Currency,  ... 
+
+Gaming Board:
+
+Figuren  ===> std::variant
+
