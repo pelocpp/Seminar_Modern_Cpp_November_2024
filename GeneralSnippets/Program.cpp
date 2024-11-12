@@ -26,7 +26,7 @@ int main()
         //main_argument_dependent_name_lookup();
         //main_array();
         //main_array_decay();
-        //main_attributes();
+        main_attributes();
         //main_auto();
         //main_back_inserter();
         //main_brace_initialization();
@@ -54,7 +54,7 @@ int main()
         //main_functional_programming_ranges();
         //main_functional_programming();
         //main_functional_programming_alternate();
-        main_initializer_list();
+        //main_initializer_list();
         //main_input_output_streams();  
         //main_invoke();
         //main_lambdas();

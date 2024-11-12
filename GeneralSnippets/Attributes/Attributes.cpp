@@ -4,18 +4,22 @@
 
 module modern_cpp:attributes;
 
-// #define DEMONSTRATE_WARNINGS_AND_ERRORS   1
+#define DEMONSTRATE_WARNINGS_AND_ERRORS   1
 
 namespace StandardAttributes {
 
-    [[ nodiscard ]] int discard_test()
+    [[nodiscard]] int discard_test()
     {
         return 123;
     }
 
+    // C4834: Rückgabewert der Funktion mit [[nodiscard]]-Attribut wird verworfen
+
     static void test_01()
     {
-        int result = discard_test();
+        discard_test();
+
+        // printf("%d", 123);
 
         // another call to discard_test:
         // 'warning: discarding return value of function with 'nodiscard' attribute'

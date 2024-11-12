@@ -156,6 +156,183 @@ vs.
 std::vector<int> vec{ 10 };  // 1 Element, vom Wert 10
 
 
+================================================
+
+auto
+
+i)   Vereinbarung von Variablen
+
+ii)  Rückgabetyp von Funktionen
+
+iii) Datentyp für Parameter
 
 
 
+Ein Vergleich:
+
+Mit &:
+
+    int tmp = n;
+00007FF6F9156B40  mov         rax,qword ptr [n]  
+00007FF6F9156B47  mov         eax,dword ptr [rax]  
+00007FF6F9156B49  mov         dword ptr [tmp],eax  
+
+Ohne & // Kopie:
+
+    int tmp = n;
+00007FF774736B3F  mov         eax,dword ptr [n]  
+00007FF774736B45  mov         dword ptr [tmp],eax  
+
+
+// ==================================================
+
+Was ist das Problem mit new ???  Zeiger
+
+Wer ist der Besitzer (Owner) des Zeigers ???
+
+Wo ist das delete ???
+
+Death March
+
+Idee:
+
+a) Objekt-Orientierung
+
+b) Konstruktoren
+   Destruktoren
+
+c) Wann wird der Destruktor aufgerufen?
+   Am Ende des Scopes!
+
+d) Determinismus // definiert
+
+e) Man stecke Zeiger (new) in Hüllenobjekte 
+   Hüllenklasse:
+
+   Konstruktor  ==> new
+   Destruktoren ==> delete
+
+f) auto_ptr:   deprecated
+
+g) std::unique_ptr
+   std::shared_ptr / std::weak_ptr
+
+2 Strategien
+
+Besitzer // Owner
+
+i) Ein std::unique_ptr-Objekt hat zu 
+   einem Zeitpunkt EINEN Besitzer.
+
+ii) Ein std::shared_ptr-Objekt kann zu 
+    einem Zeitpunkt MEHRERE Besitzer haben.
+     
+     (Smell: C# / Garbage Collection )
+
+
+// ======================================
+
+Optimierungstechniken
+---------------------
+
+RVO
+
+NRVO
+
+Copy and Move Elision
+
+// ======================================
+
+1. Ansatz: 
+
+Go - for - std::unique_ptr oder std::shared_ptr ???
+
+std::unique_ptr  <=== Einfacher 
+
+std::shared_ptr  <=== FUNKTIONIERT NICHT IMMER 
+
+Performanz: Referenzzähler: Thread-Safe?: Ja. 
+
+std::shared_ptr  <=== std::weak_ptr
+
+2 Beispiele:
+a) Wie funktioniert der std::weak_ptr
+b) Why ???????????????????????????
+
+// =========================================
+
+Zyklische Referenzen:  "Habe ich nicht" :)
+
+Call-to-Action:
+
+Observer - Pattern
+
+a) Klasse Source
+
+   Hat Zustände, die sich ändern.
+
+b) Klassse Client:
+
+   Clients interessieren sich für Änderungen
+   am Objekt "Source"
+
+c) Clients wollen informiert werden, wenn
+   sich Änderungen am Objekt "Source" ergeben.
+
+   Offensichtlich: Der / die Clients kennen das Source-Objekt.
+
+d) Technische Umsetzung: Clients melden sich am Source Objekt an.
+ 
+    attach // register:
+
+    source.register (client);
+
+e) Ein Source - Objekt muss eine "Liste" verwalten
+   für alle Clients, die bei Zustandsänderungen
+   informiert werden wollen.
+
+   Offensichtlich: Das Source-Objekt kennt Client-Objekte.
+
+Ansatz:
+
+Source:    std::shared_ptr<Source>
+
+Client(s): std::shared_ptr<Client>
+
+Beobachtung:
+
+Source - Objekt: "Liste" von Client-Objekten // register
+
+ "Liste" <std::shared_ptr>
+ oder
+ "Liste" <std::weak_ptr>   <=== 
+
+ Eine Source sollte nicht zum BESITZER (Owner)
+ eines Clients werden.
+
+ Source: Rückruf // notify erfolgt:
+
+ Client-Weak-Ptr:  Lock.
+
+ if (result == nullptr)  DAMIT MUSS DIE SOURCE
+                         UMGEHEN KÖNNEN !!!!
+
+Visualisierung:  Bauteile // Aktien
+
+Ein Bauteil ist nicht mehr vorhanden.
+
+Legacy-Anwendung:  Auf Smart-Pointer umstellen ????
+
+Never touch a running system.
+
+Ein neues Modul: 
+
+Rule-of-Zero:  Smart-Pointer.
+
+[[ likely ]] if (condition) {
+   // 90%
+}
+[[ unlikely ]] else
+{
+   // 10%
+}

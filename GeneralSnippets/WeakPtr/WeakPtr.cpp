@@ -20,7 +20,7 @@ module modern_cpp:weak_ptr;
 
 namespace WeakPointer {
 
-    static void test_01()
+    static void test_01() 
     {
         std::println("Begin-of-Program");
 
@@ -68,6 +68,7 @@ namespace WeakPointer {
 
     // =============================================================================
 
+    // Indikator: Code Smell 
     class ParentNode;
     class RightNode;
     class LeftNode;
@@ -82,8 +83,8 @@ namespace WeakPointer {
 
     class ParentNode {
     private:
-        std::shared_ptr<RightNode> m_rightNode;   // <== shared or weak ?
-        std::shared_ptr<LeftNode> m_leftNode;     // <== shared or weak ?
+        std::weak_ptr<RightNode> m_rightNode;   // <== shared or weak ?
+        std::weak_ptr<LeftNode> m_leftNode;     // <== shared or weak ?
 
     public:
         ParentNode() {
@@ -133,6 +134,7 @@ namespace WeakPointer {
     static void test_02()
     {
         std::shared_ptr<ParentNode> parent{ new ParentNode {} };
+
         std::shared_ptr<RightNode> rightNode{ new RightNode { parent } };
         std::shared_ptr<LeftNode> leftNode{ new LeftNode { parent } };
 
@@ -159,9 +161,9 @@ void main_weak_pointer()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     using namespace WeakPointer;
-    test_01();
+    //test_01();
     test_02();
-    test_03();
+    //test_03();
 }
 
 // =====================================================================================

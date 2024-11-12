@@ -24,7 +24,7 @@ namespace UniquePointerGeneral {
         std::println("*ptr:    {}", *ptr);
 
         // take ownership right now:
-        // std::unique_ptr<int> ptr2{ std::move(ptr) };
+        std::unique_ptr<int> ptr2{ std::move(ptr) };
     }
 
     static void storeUniquePointerSafe(const std::unique_ptr<int>& ptr)
@@ -52,8 +52,9 @@ namespace UniquePointerGeneral {
     {
         // create a unique_ptr to an int with value 123
         std::unique_ptr<int> ptr1{ new int{ 123 } };
+        // get: NIE delete 
         // or
-        // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
+        std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
         // auto ptr1{ std::make_unique<int>(123) };
 
@@ -92,7 +93,7 @@ namespace UniquePointerGeneral {
         storeUniquePointer(ptr);
 
         // C++ Core Guidelines
-        storeUniquePointerAlternate(ptr.get());
+        //storeUniquePointerAlternate(ptr.get());
 
         // does this work?
         std::println("*ptr:    {}", *ptr);
