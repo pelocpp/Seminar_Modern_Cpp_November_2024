@@ -52,7 +52,7 @@ namespace TypeTraits_Simple_Demo
     static void test_1b()
     {
         process_a_floating_point(42.0);
-        // process_a_floating_point(42);  // does'n t compile: static assertion fails
+       // process_a_floating_point(42);  // does'n t compile: static assertion fails
     }
 
     static void test_01()

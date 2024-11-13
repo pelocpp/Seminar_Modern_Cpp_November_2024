@@ -11,7 +11,9 @@ namespace AlgorithmTransform {
         // very simple phone book
         std::cout << "List of Entries: " << std::endl;
 
-        std::unordered_map<std::string, size_t> phonebook
+      //  std::map<std::string, size_t> phonebook2;
+
+        std::unordered_map<std::string, size_t> phonebook   // Hash-Tabelle
         {
             { "Hans Meier" ,     12345678 },
             { "Franz Schneider", 81726354 },
@@ -22,14 +24,28 @@ namespace AlgorithmTransform {
             std::cout << name << ": " << number << std::endl;
         }
 
-        std::vector<std::string> names(phonebook.size());  // set size of vector (!)
+        std::vector<std::string> names (5);  // set size of vector (!)
 
         // std::transform on a single range - retrieve names from phonebook
+
+        // names  ========>  []  / at (index)
+
+        // names  ========> push_back 
+
+        // Adapter - Pattern
+
+
+        // std::copy 
+
         std::transform(
             phonebook.begin(),
             phonebook.end(),
-            names.begin(),      // beginning of the destination range
-            [](const std::pair<const std::string, size_t>& entry) {
+
+            std::back_inserter (names),  //  Iteratoren  Adapater
+
+            // names.begin(),      // beginning of the destination range
+            
+            [] (const std::pair<const std::string, size_t>& entry) -> std::string {
                 return std::get<0>(entry);
             }
         );
@@ -109,8 +125,8 @@ void main_transform()
 {
     using namespace AlgorithmTransform;
     test_01();
-    test_02();
-    test_03();
+    //test_02();
+    //test_03();
 }
 
 // =====================================================================================

@@ -11,7 +11,7 @@ module modern_cpp:algorithms;
 namespace Algorithms {
 
     //static constexpr int MaxIterations = 100'000'000;  // release
-    static constexpr int MaxIterations = 10'000'000;     // debug
+    static constexpr int MaxIterations = 100'000'000;     // debug
 
     static std::vector<double> values(MaxIterations);
 
@@ -21,6 +21,8 @@ namespace Algorithms {
 
     static auto test_constant_initialize_classic_loop ()
     {
+       // int werte[100000000] = {};
+
         std::println("Using a classic for-loop");
 
         ScopedTimer watch{};
@@ -63,6 +65,7 @@ namespace Algorithms {
         std::for_each(
             values.begin(),
             values.end(),
+
             [](auto& elem) { elem = 123.0; }
         );
     }
@@ -73,10 +76,10 @@ namespace Algorithms {
 
         ScopedTimer watch{};
 
-        std::generate(
+        std::generate (
             values.begin(),
             values.end(),
-            [] { return 123.0; }
+            [] () { return 123.0; }
         );
     }
 
@@ -222,7 +225,7 @@ namespace Algorithms {
 
         ScopedTimer watch{};
 
-        double sum {
+        double sum {   // Folding
             std::accumulate(
                 values.cbegin(),
                 values.cend(),
@@ -270,8 +273,8 @@ namespace Algorithms {
 void main_algorithms()
 {
     using namespace Algorithms;
-    test_const_initialization();
-    test_initialization();
+   // test_const_initialization();
+  // test_initialization();
     test_sum_calculation();
 }
 

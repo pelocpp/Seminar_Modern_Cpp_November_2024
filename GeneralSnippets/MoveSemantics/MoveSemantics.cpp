@@ -6,6 +6,46 @@ module modern_cpp:move_semantics;
 
 namespace MoveSemantics {
 
+    class AnotherData
+    {
+    public:
+        std::string m_data;
+
+        // AnotherData(std::string data) :m_data{ data}  {}
+
+        AnotherData(const std::string& data) 
+            : m_data{ data } {}
+
+        AnotherData(std::string&& data)
+        {
+            m_data = std::move(data);
+
+            // m_data = std::forward<std::string>(data);
+        }
+    };
+
+    template <typename U>
+    class AnotherDataTemplated
+    {
+    public:
+        U m_data;
+
+        template <typename T>
+        AnotherDataTemplated(T&& data)
+        {
+            // m_data = std::forward<T>(data);  // move or copy
+            m_data = std::move (data);
+        }
+    };
+
+    void test_frage()
+    {
+        AnotherDataTemplated<std::string> o1{ std::string{"ABC"} };
+
+        std::string s{"XYZ"};
+        AnotherDataTemplated<std::string> o2{ s };
+    }
+
     class BigData
     {
     private:
@@ -177,7 +217,10 @@ namespace MoveSemantics {
         std::vector<BigData> vec;
 
         vec.push_back(BigData(10, 1)); 
-        vec.push_back(BigData(20, 2));
+
+        // oder auch:
+
+        vec.emplace_back(10, 1);
     }
 
     static void test_03_demonstrate_move_assignment() {
@@ -207,12 +250,15 @@ namespace MoveSemantics {
 
 void main_move_semantics()
 {
+
     using namespace MoveSemantics;
-    test_01_move_semantics();
-    test_02_demonstrate_move_ctor();
-    test_03_demonstrate_move_assignment();
-    test_04_demonstrate_move_assignment();
-    test_05_demonstrate_missing_noexept();
+    test_frage();
+    
+    //test_01_move_semantics();
+    //test_02_demonstrate_move_ctor();
+    //test_03_demonstrate_move_assignment();
+    //test_04_demonstrate_move_assignment();
+    //test_05_demonstrate_missing_noexept();
 }
 
 // =====================================================================================

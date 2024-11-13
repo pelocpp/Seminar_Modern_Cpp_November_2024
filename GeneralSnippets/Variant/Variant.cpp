@@ -91,6 +91,31 @@ namespace VariantDemo {
 
     // -------------------------------------------------------------------
 
+    std::vector<int> zahlen;
+    std::vector<int>::value_type    wert;
+    std::vector<int>::iterator it;
+
+    // primary template
+    template <class T>   // T = int&
+    struct my_remove_reference
+    {
+        using my_type = T;
+    };
+
+    // template specialization
+    // erstes Beispiel für eine Sonderbehandlung
+    template <>
+    struct my_remove_reference<float>  // für T = float
+    {
+        using my_type = double;
+    };
+
+    // template specialization     
+    template <class T>
+    struct my_remove_reference <T&> {     // T = int&
+        using my_type = T;
+    };
+
     static void test_03() {
 
         std::variant<int, double, std::string> var{ 123 };
@@ -99,7 +124,7 @@ namespace VariantDemo {
         auto visitor = [] (const auto& elem) {
 
             using Type = decltype (elem);
-            using TypeWithoutRef = std::remove_reference<Type>::type;
+            using TypeWithoutRef = my_remove_reference<Type>::my_type;
             using TypeWithoutRefAndConst = std::remove_const<TypeWithoutRef>::type;
 
             if constexpr ( std::is_same <TypeWithoutRefAndConst,int>::value == true)
@@ -255,11 +280,6 @@ namespace VariantDemo {
 
 void main_variant()
 {
-    std::vector<int> zahlen;
-    std::vector<int>::iterator it;
-
-
-
 
     using namespace VariantDemo;
     test_01();

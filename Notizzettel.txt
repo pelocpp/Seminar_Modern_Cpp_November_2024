@@ -499,3 +499,115 @@ Gaming Board:
 
 Figuren  ===> std::variant
 
+======================================================
+
+
+Explizite Spezialisierung; "VariantDemo::my_remove_reference2"
+ist keine Spezialisierung einer Klassenvorlage	
+
+
+Frage:
+
+Wie / wo werden Template-Definitionen abgelegt:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/TemplateClassBasics/TemplatesClassBasics.md
+
+======================================================
+
+JavaScript, Python:  for_each
+
+Range-based Loop
+
+Bereichsbasierte Wiederholungsschleife
+
+        for (const auto& value : values) {
+            sum += value;
+        }
+
+// =====================================
+
+STL - Stilistik:
+
+        auto initArray = [] {
+            std::generate(
+                values.begin(),
+                values.end(),
+                [value = 0.0] () mutable { return ++value; }
+            );
+        };
+
+Programmieren in Building Blocks:
+
+std::back_inserter
+
+std::transform
+
+Hash-Tabelle:     std::unordered_map
+
+           (Schlüssel, Wert) - Paare 
+            Key - Value
+
+           Key:  Schlüssel ====> Index in ein Array
+
+           Suche: Schnellen Zugriff benötigst.
+
+Binäre Suchbaum:   std::map
+
+============================================================
+
+Variadische Templates:
+
+Ab C++ 11
+
+== Verständnis
+
+== Why ??????????????????????????????????????????
+
+   Es gibt in der Bibliothek viele Funktionen,
+   die Parameter transportieren.
+
+   std::make_unique ....
+
+   emplace-Technik
+
+== Folding
+
+== Einfache Anwendungen
+
+
+== Parameter Pack:
+
+   	template <typename ... TArgs>
+	void my_func (TArgs ... args)
+
+    args ist ein pack:
+
+    EINPACKEN: my_func (1, 2, 3) ===> args
+
+    template <typename ... TArgs>
+    anotherFunc (TArgs ... args)
+
+    AUSPACKEN:  Aus args wird eine Komma-getrennte Liste erzeugt.
+
+    SONDERFALL:
+
+    Wenn alle Wert des Packs vom selben Typ sind:
+
+    Dann geht auspacken in einer std::initializer_list
+
+    ==============================================
+
+    2 Übungen:
+
+    true && false && true
+
+    auto result = andAll (true, false, true, true, true);
+
+    result = sameType(1);
+
+    Frage:
+
+    Geht std::forward auch ohne Templates ???
+    
+    https://stackoverflow.com/questions/36365418/how-can-i-perform-perfect-forwarding-without-using-templates
+
