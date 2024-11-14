@@ -680,3 +680,113 @@ Ein Tupel ist wie eine struct
 
 für Schreibfaule.
 
+
+================================================
+================================================
+
+C++ // Standard // Multithreading
+
+====> "Kleinste gemeinsamen Nenner"
+
+C++ 20: STL recht ansprechend / umfangreich.
+
+std::thread
+
+Win32 : CreateThread  <==========================
+
+NACHTEIL :
+
+  Pro Thread ist CreateThread   EINMAL aufzurufen:
+
+  Dieser Thread kann NICHT wiederverwendet werden !!!
+
+  CreateThread: Viele Resources werden verbraucht.
+
+  Web Server: Pro Client:  Ein Thread: 
+
+===========================================================
+
+int counter = 0;
+
+a) 1000 Mal hoch gezählt (+1)
+
+b) 1000 Mal runter gezählt (-1)
+
+a) und b) werden "parallel" (Threads) ausgeführt.
+
+Frage: Wert danach ? 0 ?
+
+Hmm, also 2 Threads greifen auf DIESSELBE Variable zu.
+
+Problem:
+
+                ++m_counter;
+
+                              // Lesen des Variablenwerts in den Akku
+00007FF6121F09F3  mov         rax,qword ptr [this]  
+00007FF6121F09FA  mov         eax,dword ptr [rax]  
+
+00007FF6121F09FC  inc / dec   eax    // +1   findet statt: Woo : Register EAX
+
+============> Thread-Wechsel: EAX wird gesichert
+<============ EAX wird restauriert: "mit einem quasi veralteten Wert"
+
+                              // Rückschreiben des Variablenwerts aus dem Akku
+00007FF6121F09FE  mov         rcx,qword ptr [this]  
+00007FF6121F0A05  mov         dword ptr [rcx],eax  
+
+
+Thread-Wechsel: Was gehört da dazu ??? Es wird der (komplette) Registersatz                       
+                                      gesichert.
+
+
+Lösung: Nicht in / mit C / C++.
+ 
+Hilfestellung des unterlagerten Betriebssystems.
+
+lock // unlock müssen ZWINGEND als Paar in Erscheinung treten !!!!!!!!!!!
+
+Idee: Smart Pointer   // Hüllenobjekt
+
+Konstruktor:   .lock
+Destruktor:    .unlock
+
+=================================================================
+
+Multithreading:
+
+Konkurrierender Zugriff.
+
+Kooperation:
+
+Ein Thread arbeitet.   "habe etwas produziert"  // notify
+Ein Thread wartet.     "warten"  // wait
+
+a) std::future
+
+b) Konzept:     std::condition_variable
+
+===============================================================
+
+std::jthread   // C++ 20    joinable thread // Nicolai Josuttis
+
+Mechanismus:  Stoppen eines Threads.
+
+===============================================================
+
+Parallele Algorithmen
+
+Expression Templates
+
+
+
+
+
+
+
+
+
+
+
+
+
