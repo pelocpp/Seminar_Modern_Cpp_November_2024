@@ -4,7 +4,7 @@
 
 module modern_cpp:structured_binding;
 
-namespace StructuredBinding {
+namespace StructuredBinding { 
 
     static std::pair<int, int> divide_remainder(int dividend, int divisor)
     {
@@ -30,16 +30,21 @@ namespace StructuredBinding {
     {
         auto [quotient, remainder] { divide_remainder(20, 3) };
 
-        std::println("16 / 3 is {} with a remainder of {}", quotient, remainder);
+        std::println("16 / 3 is {} with a remainder of {}", 
+            quotient, remainder);
     }
 
     static void test_03()
     {
         int arr[] { 123, 456, 789 };
 
-        auto [a, b, c] { arr };
+        auto& [a, b, c] { arr };
 
         std::println("{}, {}, {}", a, b, c);
+
+        a = 999;
+
+        std::println("{}, {}, {}", arr[0], b, c);
     }
 
     static void test_04()
@@ -82,14 +87,20 @@ namespace StructuredBinding {
     static void test_07() {
 
         // without structured binding
-        Point p1 { 1, 2 };
+        // designated initializer syntax
+        Point p0 { 1, 2 };
+        Point p1 { .m_x= 1, .m_y = 2 };
 
         std::println("X Coordinate : {}", p1.m_x);
         std::println("Y Coordinate : {}", p1.m_y);
 
         // with structured binding
         Point p2 { 10, 20 };
+
         auto [x, y] { p2 };
+
+        std::println("X Coordinate : {}", p2.m_x);
+        std::println("Y Coordinate : {}", p2.m_y);
 
         std::println("X Coordinate : {}", x);
         std::println("Y Coordinate : {}", y);
@@ -144,15 +155,15 @@ namespace StructuredBinding {
 void main_structured_binding()
 {
     using namespace StructuredBinding;
-    test_01();
-    test_02();
+    //test_01();
+    //test_02();
     test_03();
-    test_04();
-    test_05();
-    test_06();
-    test_07();
-    test_08();
-    test_09();
+    //test_04();
+    //test_05();
+    //test_06();
+    //test_07();
+    //test_08();
+    //test_09();
 }
 
 // =====================================================================================

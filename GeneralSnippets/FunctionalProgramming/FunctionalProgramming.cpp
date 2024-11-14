@@ -195,9 +195,9 @@ void main_functional_programming_ranges()
 {
     using namespace FunctionalProgramming;
 
-    test_functional_programming_01();
-    test_functional_programming_02();
-    test_functional_programming_03();
+    //test_functional_programming_01();
+    //test_functional_programming_02();
+    //test_functional_programming_03();
     test_functional_programming_04();
     test_functional_programming_05();
 }

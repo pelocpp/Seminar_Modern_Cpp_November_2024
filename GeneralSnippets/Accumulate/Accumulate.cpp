@@ -53,6 +53,7 @@ namespace AlgorithmAccumulate {
 
     static void test_01() {
         std::vector<std::string> names {"Hans", "Sepp", "Georg"};
+        
         std::string s{ toString(names) };
         std::cout << s << std::endl;
     }
@@ -75,8 +76,8 @@ void main_accumulate()
 {
     using namespace AlgorithmAccumulate;
     test_01();
-    test_02();
-    test_03();
+    //test_02();
+    //test_03();
 }
 
 // =====================================================================================

@@ -12,12 +12,21 @@ namespace Exercises_VariadicTemplates {
         // Logical And - with variadic templates
 
         template<typename T>
+            requires std::is_same<T, bool>::value
         bool andAll(T cond) {
             return cond;
         }
 
+        //bool andAll() {
+        //    return true;
+        //}
+
         template<typename T, typename ... TRest>
         bool andAll(T cond, TRest ... conds) {
+
+            //std::initializer_list<bool> ...
+            auto list = { conds ... };   // Problem
+
             return cond && andAll(conds...);
         }
 
@@ -91,11 +100,11 @@ namespace Exercises_VariadicTemplates {
             std::cout << " # " << arg1 << ": " << typeid(arg1).name();
             std::cout << " - " << arg2 << ": " << typeid(arg2).name() << std::endl;
 
-            return std::is_same<decltype(arg1), decltype(arg2)>::value;
+           // return std::is_same<decltype(arg1), decltype(arg2)>::value;
             // or
             // return std::is_same_v<decltype(arg1), decltype(arg2)>;
             // or
-            // return std::is_same<T1, T2>::value;
+            return std::is_same<T1, T2>::value;
         }
 
         template<typename T1, typename T2, typename... TRest>
@@ -106,7 +115,9 @@ namespace Exercises_VariadicTemplates {
 
             // Note: short-circuit-evaluation is considered !
             // Study output of program execution
-            return std::is_same<decltype(arg1), decltype(arg2)>::value && sameType(arg2, args...);
+            return std::is_same<decltype(arg1), decltype(arg2)>::value 
+                
+                && sameType(arg2, args...);
 
             // Note: Due to order of expression evaluation short-circuit-evaluation cannot be considered !
             // Study output of program execution
@@ -362,10 +373,10 @@ void test_exercises_variadic_templates()
     using namespace Exercises_VariadicTemplates;
     Exercise_01::testExercise_01();
     Exercise_02::testExercise_02();
-    Exercise_03::testExercise_03();
-    Exercise_04::testExercise_04();
-    Exercise_05::testExercise_05();
-    Exercise_06::testExercise_06();
+    //Exercise_03::testExercise_03();
+    //Exercise_04::testExercise_04();
+    //Exercise_05::testExercise_05();
+    //Exercise_06::testExercise_06();
 }
 
 // =====================================================================================

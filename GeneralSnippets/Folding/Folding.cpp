@@ -8,6 +8,70 @@ module;
 
 module modern_cpp:folding;
 
+namespace Folding_Seminar {
+
+    auto folding_01_addierer(auto ... args) {
+
+        auto result = 0;
+
+        for (auto elem : { args ... }) {
+            result += elem;
+        }
+
+        return result;
+    }
+
+    auto folding_02_addierer(auto ... args) {
+
+        auto result = ( ... + args );
+
+        return result;
+    }
+
+    auto folding_03_subtrahierer(auto ... args) {
+
+        auto result = (args - ...);
+
+        return result;
+    }
+
+    void folding_04_printer (auto ... args) {
+
+        // std::cout << << << << << << 
+
+        ( std::cout << ... << args );
+    }
+
+    void folding_06_printer(auto ... args, auto last)
+    {
+        (std::cout << ... << args);
+;
+    }
+
+    void folding_05_printer(auto first, auto ... args)
+    {
+        std::cout << first;
+
+        ( (std::cout << " - " << args ) , ... );
+
+        std::cout << std::endl;
+    }
+
+    void test_seminar_folding()
+    {
+        // (1 - 2) - 3 = -4
+        // 1 - (2 - 3) = +2
+
+      //  folding_05_printer(123, 45.789, "ABC", '?', false, "Stop");
+
+        folding_05_printer(1, 2, 3, 4, 5, 6);
+
+        //auto result = folding_03_subtrahierer(1, 2, 3);
+        //std::cout << "Result: " << result << std::endl;
+         }
+}
+
+
 namespace Folding {
 
     /* folding examples: introduction
@@ -156,23 +220,35 @@ namespace Folding {
 
         ScopedTimer watch{ };
 
+        auto sum = 0.0;
+
         for (size_t i{}; i != MaxIterations; ++i) {
-            auto sum{ addFolding(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) };
+            sum = addFolding(1, 2, 3, 4.0, 5, 6, 7, 8, 9, 10);
         }
+
+        std::cout << sum << std::endl;
     }
 
     static void test_06_benchmark_iterating() {
 
         ScopedTimer watch{ };
 
+        auto sum = 0;
+
         for (size_t i{}; i != MaxIterations; ++i) {
-            auto sum{ addIterating(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) };
+            sum = addIterating(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         }
+
+        std::cout << sum << std::endl;
     }
 }
 
 void main_folding()
 {
+    using namespace Folding_Seminar;
+    test_seminar_folding();
+    return;
+
     using namespace Folding;
     //test_01();
     //test_02();
@@ -183,8 +259,8 @@ void main_folding()
     //test_04();
     //test_05();
 
-    test_06_benchmark_folding();
-    test_06_benchmark_iterating();
+    //test_06_benchmark_folding();
+    //test_06_benchmark_iterating();
 }
 
 // =====================================================================================

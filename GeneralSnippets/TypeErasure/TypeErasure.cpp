@@ -252,8 +252,8 @@ namespace BookStoreUsingDynamicPolymorphism {
         std::string getAuthor() const { return m_author; }
         std::string getTitle() const { return m_title; }
 
-        double getPrice() const override { return m_price; }
-        size_t getCount() const override { return m_count; }
+        virtual double getPrice() const override { return m_price; }
+        virtual size_t getCount() const override { return m_count; }
     };
 
     class Movie : public IMedia
@@ -281,6 +281,7 @@ namespace BookStoreUsingDynamicPolymorphism {
     {
     private:
         using Stock = std::vector<std::shared_ptr<IMedia>>;
+        
         using StockList = std::initializer_list<std::shared_ptr<IMedia>>;
 
     public:
@@ -448,7 +449,9 @@ namespace BookStoreUsingTypeErasure {
     };
 
     template <typename ... TMedia>
+        
         requires (MediaConcept<TMedia> && ...)
+       
     class Bookstore
     {
     private:
@@ -461,9 +464,10 @@ namespace BookStoreUsingTypeErasure {
 
         // template member method
         template <typename T>
+        
         void addMedia(const T& media) {
-            // m_stock.push_back(StockType{ media });  // ausführliche Schreibweise
-            m_stock.push_back(media);
+            m_stock.push_back(StockType{ media });  // ausführliche Schreibweise
+            // m_stock.push_back(media);
         }
 
         // or
@@ -665,9 +669,9 @@ void main_type_erasure()
     using namespace BookStoreUsingDynamicPolymorphism;
     using namespace BookStoreUsingTypeErasure;
 
-    TypeErasureUsingDynamicPolymorphism::test_type_erasure_using_dynamic_polymorphism();
-    TypeErasureUsingTemplateTechniques::test_type_erasure_using_template_techniques();
-    TypeErasureUsingTemplateTechniquesAndConcepts::test_type_erasure_using_template_techniques();
+    //TypeErasureUsingDynamicPolymorphism::test_type_erasure_using_dynamic_polymorphism();
+    //TypeErasureUsingTemplateTechniques::test_type_erasure_using_template_techniques();
+    //TypeErasureUsingTemplateTechniquesAndConcepts::test_type_erasure_using_template_techniques();
 
     BookStoreUsingDynamicPolymorphism::test_bookstore_polymorphic_01();
     BookStoreUsingDynamicPolymorphism::test_bookstore_polymorphic_02();

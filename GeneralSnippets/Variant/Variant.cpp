@@ -194,12 +194,16 @@ namespace VariantDemo {
     static void test_05() {
 
         std::vector<std::variant<int, long, long long, float, double>>
-            vec = { 100, 200l, 300ll, 400.5f, 500.5 };
+            vec = { 100, 200l, 300ll, 400.5f, 500.5 
+        };
 
         // display each value
         std::println("Values:      ");
         for (const auto& var : vec) {
-            std::visit([](const auto& n) { std::print("{} ", n); }, var);
+            std::visit(
+                [](const auto& n) { std::print("{} ", n); },
+                var
+            );
         }
         std::println();
 

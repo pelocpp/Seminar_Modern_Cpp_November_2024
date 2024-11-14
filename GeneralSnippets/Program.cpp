@@ -66,7 +66,7 @@ int main()
         //main_metaprogramming_02(); 
         //main_modularized_standard_library(); 
         //main_modules();
-        main_move_semantics();
+      //  main_move_semantics();
         //main_optional();
       //  main_perfect_forwarding();
         //main_placement_new();
@@ -84,7 +84,7 @@ int main()
        // main_sso();
         //main_static_assert();
         //main_string_view();
-        //main_structured_binding();
+       // main_structured_binding();
         //main_class_templates_basics_01();
         //main_class_templates_basics_02();
         //main_function_templates_basics();
@@ -94,7 +94,7 @@ int main()
         //main_to_underlying();
         //main_transform();
         //main_trim(); 
-        //main_tuple(); 
+        main_tuple(); 
         //main_two_phase_name_lookup();
         //main_type_erasure();
         //main_type_traits();
@@ -103,12 +103,12 @@ int main()
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
-       // main_variant();
+      //  main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
         //main_weak_pointer();
 
-      // main_exercises();
+    //   main_exercises();
     }
     catch (const std::exception& ex) {
         std::cout << "Exception: " << ex.what() << std::endl;

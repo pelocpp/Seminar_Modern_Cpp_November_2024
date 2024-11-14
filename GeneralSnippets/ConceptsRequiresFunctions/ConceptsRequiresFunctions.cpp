@@ -15,10 +15,10 @@ concept NumericalEx = std::is_integral<T>::value || std::is_floating_point<T>::v
 namespace Requires_Clause {
 
     template <typename T>
-        requires Numerical<T>
+        requires NumericalEx<T>
     auto add(T a, T b)
     {
-        return a + b;
+        return a + b; // addieren // int, float, kein: std::string
     }
 
     // "inlining" constraints on template parameter types
@@ -48,7 +48,7 @@ namespace Requires_Clause {
         //    the concept 'Numerical<std::string>' evaluated to false
         //    the concept 'std::floating_point<std::string>' evaluated to false
         //    the concept 'std::integral<std::string>' evaluated to false
-        // auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
+       // auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
     }
 
     // ---------------------------------------------------------------------------------
@@ -197,9 +197,11 @@ namespace UserDefined_Concept {
     template<typename T>
     constexpr bool isGreaterThanWord{ sizeof(T) > 2 };
 
+
     // using <type_traits>
     template <typename T>
-    concept GreatIntegral = std::is_integral<T>::value && isGreaterThanWord<T>;
+    concept GreatIntegral =
+        std::integral<T> && isGreaterThanWord<T>;
 
     template<GreatIntegral T>
     T incrementByOne(const T& arg) {
@@ -216,9 +218,9 @@ namespace UserDefined_Concept {
 
         n = incrementByOne(n);
 
-        // short s{ 1 };
+        //short s{ 1 };
         // the associated constraints are not satisfied:
-        // s = incrementByOne(s);
+        //s = incrementByOne(s);
 
         n = incrementByTwo(n);
 

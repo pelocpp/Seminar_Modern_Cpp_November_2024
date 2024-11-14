@@ -12,7 +12,11 @@ namespace TupleSamples {
     static void test_01()
     {
         // declaring tuple 
-        std::tuple <char, int, double> values;
+        std::tuple <char, int, double> values{ '?', 123, 99.99};
+
+        // .............
+
+        const auto& [id, int_wert, exakter_wert] = values;
 
         // assigning values to tuple using std::make_tuple
         values = std::make_tuple('A', 123, 123.456);

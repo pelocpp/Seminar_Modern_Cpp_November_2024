@@ -33,8 +33,8 @@ namespace MoveSemantics {
         template <typename T>
         AnotherDataTemplated(T&& data)
         {
-            // m_data = std::forward<T>(data);  // move or copy
-            m_data = std::move (data);
+            m_data = std::forward<T>(data);  // move or copy
+            // m_data = std::move (data);
         }
     };
 

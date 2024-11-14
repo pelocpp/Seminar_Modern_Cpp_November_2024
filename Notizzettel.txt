@@ -4,7 +4,7 @@ Guten Morgen
 
 Peter Loos
 
-P@ssw0rd
+peter.loos@gmx.de
 
 ========================
 
@@ -610,4 +610,73 @@ Ab C++ 11
     Geht std::forward auch ohne Templates ???
     
     https://stackoverflow.com/questions/36365418/how-can-i-perform-perfect-forwarding-without-using-templates
+
+============================================
+
+Templates:
+
+Typ:   "T"
+
+== Geht
+== Geht nicht:  Probieren, reagierendes Verhalten.
+
+==> Proaktives Verhalten
+
+============================================
+
+Funktionale Progr.:  Funktionen - KEIN STATE
+
+OO-Progr.:  Methoden ... Instanzvariablen // State
+
+    Teacher:   const-Parameter // const - Methoden
+
+Code-Generierung: Optimieren !!!
+
+
+C++:   
+
+== OO-Sprache
+== Generische Sprache (Templates)
+== Ansätze: Funktionale Progr
+
+
+Was ist Folding ???
+
+Wiederholte Anwendung DESSELBEN Operators:
+
+int sum = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10;
+
+Folding Ausdruck
+
+
+============================================
+
+STL - Container
+
+Homogene Container:  Enthalten Werte DESSELBEN Typs.
+
+std::variant
+
+"Heterogener Container"
+
+============================================
+
+
+Type Erasure
+
+Typ löschen
+
+std::variant
+
+std::any
+
+================================================
+
+Structured Binding
+
+std::tuple <char, int, double> values;
+
+Ein Tupel ist wie eine struct
+
+für Schreibfaule.
 
