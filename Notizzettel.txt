@@ -778,15 +778,53 @@ Parallele Algorithmen
 
 Expression Templates
 
+===============================================================
+
+Klasse: 
+
+operator+ 
+
+Klasse Matrix
+Klasse Vektor
+Klasse std::string
 
 
+Matrix m1, m2, m3, m4, m5:
+
+result = m1 + m2 + m3 + m4 + m5;   // schön lesbare
+
+class Matrix
+{
+   Matrix operator+ (const Matrix& other) const;
+
+}
 
 
+Matrix Matrix::operator+ (const Matrix& other) const
+{
+    Matrix result;
+    // ....... Addition
 
+    return result;
+}
 
+result = (((m1 + m2) + m3) + m4) + m5; 
 
+Effizienz:
 
+result[0][0] = m1[0][0] + m2[0][0] + m3[0][0] + m4[0][0];
 
+add (const M1, const M2, const M3)
 
+Lösung:
 
+Problem: operator+ 
+
+result[0][0] = ( ( m1[0][0] + m2[0][0] ) + m3[0][0] ) + m4[0][0];  LAZY
+
+Buch:
+
+https://www.amazon.de/Functional-Programming-C-Ivan-Cukic/dp/1617293814/
+
+Ivan Kukic
 

@@ -18,7 +18,7 @@ namespace ExpressionTemplates {
     constexpr size_t DefaultSize{ 5 };
 
     // benchmark sizes
-    constexpr int Iterations{ 500000 };
+    constexpr int Iterations{ 5000000 };
     constexpr size_t BenchmarkSize{ 50 };
 
     // actual sizes
@@ -100,11 +100,12 @@ namespace ExpressionTemplates {
     class MatrixExpr
     {
     private:
-        const TLhs& m_lhs;
+        const TLhs& m_lhs;  // value
         const TRhs& m_rhs;
 
     public:
-        MatrixExpr(const TLhs& lhs, const TRhs& rhs) : m_rhs{ rhs }, m_lhs{ lhs } {}
+        MatrixExpr(const TLhs& lhs, const TRhs& rhs)
+            : m_rhs{ rhs }, m_lhs{ lhs } {}
 
         T operator() (size_t x, size_t y) const {
             return m_lhs(x, y) + m_rhs(x, y);
@@ -147,6 +148,7 @@ namespace ExpressionTemplates {
 
         // adding 2 matrices
         MatrixExpr<Matrix<Size>, Matrix<Size>> sumAB(a, b);
+
         for (size_t y{}; y != a.getSize(); ++y) {
             for (size_t x{}; x != a.getSize(); ++x) {
                 result(x, y) = sumAB(x, y);
@@ -155,6 +157,7 @@ namespace ExpressionTemplates {
 
         // adding 3 matrices
         MatrixExpr<MatrixExpr<Matrix<Size>, Matrix<Size>>, Matrix<Size>> sumABC(sumAB, c);
+        
         for (size_t y{}; y != a.getSize(); ++y) {
             for (size_t x{}; x != a.getSize(); ++x) {
                 result(x, y) = sumABC(x, y);
@@ -165,7 +168,9 @@ namespace ExpressionTemplates {
         MatrixExpr<MatrixExpr<MatrixExpr<Matrix<Size>, Matrix<Size>>, Matrix<Size>>, Matrix<Size>> sumABCD{ sumABC, d };
         for (size_t y{}; y != a.getSize(); ++y) {
             for (size_t x{}; x != a.getSize(); ++x) {
+
                 result(x, y) = sumABCD(x, y);
+            
             }
         }
     }
@@ -276,9 +281,9 @@ namespace ExpressionTemplates {
 void main_expression_templates()
 {
     using namespace ExpressionTemplates;
-    test_01();            // <== classical approach
-    test_02();            // <== expression templates approach
-    test_03();            // <== expression templates approach using modified operator=
+    //test_01();            // <== classical approach
+    //test_02();            // <== expression templates approach
+    //test_03();            // <== expression templates approach using modified operator=
     test_04_benchmark();  // <== benchmark
 }
 

@@ -45,7 +45,7 @@ int main()
         //main_decltype();
         //main_default_initialization();
         //main_erase_remove_idiom();
-        //main_expression_templates();
+        main_expression_templates(); 
         //main_generate();
         //main_generic_functions();
         //main_exception_safety();
@@ -94,7 +94,7 @@ int main()
         //main_to_underlying();
         //main_transform();
         //main_trim(); 
-        main_tuple(); 
+        //main_tuple(); 
         //main_two_phase_name_lookup();
         //main_type_erasure();
         //main_type_traits();
